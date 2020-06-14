@@ -1,0 +1,155 @@
+
+#include<iostream>
+#include <conio.h>
+using namespace std;
+main(){
+ int dim=13;
+ char lab[dim][dim];
+ for(int i=0;i<dim;i++){
+  for(int j=0;j<dim;j++){
+   lab[i][j]=' ';
+  }
+ }
+ for(int i=0;i<dim;i++){
+  lab[0][i]='o';
+  lab[dim-1][i]='o';
+  lab[i][0]='o';
+  lab[i][dim-1]='o';
+ }
+ for(int i=0;i<dim;i++){
+  for(int j=0;j<dim;j++){
+   cout<<" ";
+   cout<<lab[i][j];
+  }
+  cout<<"\n";
+ }
+ int xx=2,xy=0;
+ char con;
+ while(con!='i'){
+  con=getch();
+  if(con==72||con==119){
+   xy--;
+  }
+  if(con==80||con==115){
+   xy++;
+  }
+  if(con==77||con==100){
+   xx++;
+  }
+  if(con==75||con==97){
+   xx--;
+  }
+  if(con==119||con==115||con==97||con==100){
+   lab[xx][xy]=' ';
+  }else{
+   lab[xx][xy]='o';
+  }
+  system("cls");
+  for(int i=0;i<dim;i++){
+   for(int j=0;j<dim;j++){
+    cout<<" ";
+    cout<<lab[j][i];
+   }
+   cout<<"\n";
+  }
+ }
+ int x=1,y=1;
+ lab[x][y]=118;
+   system("cls");
+  for(int i=0;i<dim;i++){
+   for(int j=0;j<dim;j++){
+    cout<<" ";
+    cout<<lab[j][i];
+   }
+   cout<<"\n";
+  }
+ while(x!=dim-2||y!=dim-2){
+  switch(lab[x][y]){
+   case 118://abajo
+    if(lab[x+1][y]==' '){
+     lab[x+1][y]=62;
+     lab[x][y]=' ';     
+     x++;
+    }else if(lab[x][y+1]==' '){
+     lab[x][y+1]=118;
+     lab[x][y]=' ';
+     y++;
+    }else if(lab[x-1][y]==' '){
+     lab[x-1][y]=60;
+     lab[x][y]=' ';
+     x--;
+    }else{
+     lab[x][y-1]=94;
+     lab[x][y]=' ';
+     y--;
+    }
+    break;
+   case 94://arriba
+    if(lab[x-1][y]==' '){
+     lab[x-1][y]=60;
+     lab[x][y]=' ';     
+     x--;
+    }else if(lab[x][y-1]==' '){
+     lab[x][y-1]=94;
+     lab[x][y]=' ';
+     y--;
+    }else if(lab[x+1][y]==' '){
+     lab[x+1][y]=62;
+     lab[x][y]=' ';
+     x++;
+    }else{
+     lab[x][y+1]=118;
+     lab[x][y]=' ';
+     y++;
+    } 
+    break;
+   case 62://derecha
+    if(lab[x][y-1]==' '){
+     lab[x][y-1]=94;
+     lab[x][y]=' ';     
+     y--;
+    }else if(lab[x+1][y]==' '){
+     lab[x+1][y]=62;
+     lab[x][y]=' ';
+     x++;
+    }else if(lab[x][y+1]==' '){
+     lab[x][y+1]=118;
+     lab[x][y]=' ';
+     y++;
+    }else{
+     lab[x-1][y]=60;
+     lab[x][y]=' ';
+     x--;
+    } 
+    break;
+   case 60://izq
+    if(lab[x][y+1]==' '){
+     lab[x][y+1]=118;
+     lab[x][y]=' ';     
+     y++;
+    }else if(lab[x-1][y]==' '){
+     lab[x-1][y]=60;
+     lab[x][y]=' ';
+     x--;
+    }else if(lab[x][y-1]==' '){
+     lab[x][y-1]=94;
+     lab[x][y]=' ';
+     y--;
+    }else{
+     lab[x+1][y]=62;
+     lab[x][y]=' ';
+     x++;
+    } 
+    break;
+  }
+  system("cls");
+  for(int i=0;i<dim;i++){
+   for(int j=0;j<dim;j++){
+    cout<<" ";
+    cout<<lab[j][i];
+   }
+   cout<<"\n";
+  }
+ }
+ system("pause");
+}
